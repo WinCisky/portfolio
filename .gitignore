@@ -1,0 +1,30 @@
+# Hugo default output
+public/
+
+# Hugo cache
+resources/_gen/
+
+# Hugo build lock
+.hugo_build.lock
+
+# Hugo stats (if using PostCSS/Tailwind/etc.)
+hugo_stats.json
+
+# Dependencies
+node_modules/
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
