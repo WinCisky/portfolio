@@ -1,0 +1,9 @@
+name = "Minimal Portfolio"
+description = "A clean, minimal Hugo theme for showcasing projects and blog posts."
+license = "MIT"
+version = "0.1"
+min_hugo_version = "0.110.0"
+
+[author]
+  name = "Simone Simonella"
+  homepage = "https://example.org/"

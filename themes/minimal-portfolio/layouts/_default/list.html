@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="container list-container">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <div class="list-items">
+    {{ range .Paginator.Pages }}
+    <article class="list-item">
+      {{ $page := . }}
+      {{ with .Params.image }}
+      <div class="list-item-thumb">
+        {{ $img := $page.Resources.GetMatch . }}
+        {{ if not $img }}
+          {{ $img = resources.Get . }}
+        {{ end }}
+        
+        <a href="{{ $page.RelPermalink }}">
+        {{ if $img }}
+          {{ $processed := $img.Fill "400x400" }}
+          <img src="{{ $processed.RelPermalink }}" alt="{{ $page.Title }}">
+        {{ else }}
+          <img src="{{ . | relURL }}" alt="{{ $page.Title }}">
+        {{ end }}
+        </a>
+      </div>
+      {{ end }}
+      <div class="list-item-content">
+        {{ if .Date }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        {{ end }}
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p>{{ .Summary }}</p>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+</div>
+{{ end }}

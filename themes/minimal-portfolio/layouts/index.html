@@ -1,0 +1,88 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">Hi, I'm Simone</h1>
+      <p class="hero-subtitle">I do work as a web developer and I do like thinkering with projects for my own amusement.</p>
+    </div>
+    <div class="hero-image">
+      {{ $avatar := resources.Get "images/photo_2026-03-15_00-58-59.jpg" }}
+      {{ if $avatar }}
+        {{ $processed := $avatar.Fill "300x300" }}
+        <img src="{{ $processed.RelPermalink }}" alt="Profile Photo" class="hero-avatar">
+      {{ else }}
+        <img src="https://via.placeholder.com/300" alt="Profile Photo" class="hero-avatar">
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="home-sections container">
+  <div class="home-section">
+    <h2>Projects</h2>
+    <div class="list-items">
+      {{ range first 5 (where .Site.RegularPages "Type" "projects") }}
+      <article class="list-item">
+        {{ $page := . }}
+        {{ with .Params.image }}
+        <div class="list-item-thumb">
+          {{ $img := $page.Resources.GetMatch . }}
+          {{ if not $img }}
+            {{ $img = resources.Get . }}
+          {{ end }}
+          
+          <a href="{{ $page.RelPermalink }}">
+          {{ if $img }}
+            {{ $processed := $img.Fill "400x400" }}
+            <img src="{{ $processed.RelPermalink }}" alt="{{ $page.Title }}">
+          {{ else }}
+            <img src="{{ . | relURL }}" alt="{{ $page.Title }}">
+          {{ end }}
+          </a>
+        </div>
+        {{ end }}
+        <div class="list-item-content">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Summary }}</p>
+        </div>
+      </article>
+      {{ end }}
+      <a href="/projects/" class="view-all">View all projects &rarr;</a>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <h2>Blog</h2>
+    <div class="list-items">
+      {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+      <article class="list-item">
+        {{ $page := . }}
+        {{ with .Params.image }}
+        <div class="list-item-thumb">
+          {{ $img := $page.Resources.GetMatch . }}
+          {{ if not $img }}
+            {{ $img = resources.Get . }}
+          {{ end }}
+          
+          <a href="{{ $page.RelPermalink }}">
+          {{ if $img }}
+            {{ $processed := $img.Fill "400x400" }}
+            <img src="{{ $processed.RelPermalink }}" alt="{{ $page.Title }}">
+          {{ else }}
+            <img src="{{ . | relURL }}" alt="{{ $page.Title }}">
+          {{ end }}
+          </a>
+        </div>
+        {{ end }}
+        <div class="list-item-content">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Summary }}</p>
+        </div>
+      </article>
+      {{ end }}
+      <a href="/posts/" class="view-all">View all posts &rarr;</a>
+    </div>
+  </div>
+</section>
+{{ end }}

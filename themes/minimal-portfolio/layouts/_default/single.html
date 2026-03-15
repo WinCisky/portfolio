@@ -1,0 +1,35 @@
+{{ define "main" }}
+<article class="single-article container">
+  <header class="article-header">
+    {{ with .Params.image }}
+    <div class="featured-image">
+      {{ $img := $.Resources.GetMatch . }}
+      {{ if not $img }}
+        {{ $img = resources.Get . }}
+      {{ end }}
+      
+      {{ if $img }}
+        {{ $processed := $img.Fill "1600x900" }}
+        <img src="{{ $processed.RelPermalink }}" alt="{{ $.Title }}">
+      {{ else }}
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+      {{ end }}
+    </div>
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ if .Date }}
+    <time class="article-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    {{ end }}
+    {{ with .Params.tags }}
+    <div class="article-tags">
+      {{ range . }}
+      <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag">#{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+  <div class="article-content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
