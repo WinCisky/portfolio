@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Simone Simonella | Portfolio'
 theme = 'minimal-portfolio'
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [menus]
   [[menus.main]]
     name = "Home"
