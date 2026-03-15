@@ -3,6 +3,9 @@ languageCode = 'en-us'
 title = 'Simone Simonella | Portfolio'
 theme = 'minimal-portfolio'
 
+[params]
+  description = "Simone Simonella's portfolio - full-stack web developer"
+
 [caches]
   [caches.images]
     dir = ':cacheDir/images'

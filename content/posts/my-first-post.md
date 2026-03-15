@@ -4,7 +4,7 @@ date: 2026-03-14T10:00:00Z
 draft: false
 summary: "Welcome to my new blog where I share my thoughts and ideas."
 tags: ["intro", "blogging"]
-image: "https://picsum.photos/200/300"
+image: "images/placeholder.webp"
 ---
 
 Welcome to my first blog post!

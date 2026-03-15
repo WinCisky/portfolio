@@ -3,7 +3,7 @@ title: "Sample Project"
 date: 2026-03-14T12:00:00Z
 summary: "A brief description of this amazing project."
 tags: ["hugo", "theme", "web-dev"]
-image: "https://picsum.photos/200/300"
+image: "images/placeholder.webp"
 ---
 
 ## Project Overview
