@@ -9,8 +9,16 @@
       {{ end }}
       
       {{ if $img }}
-        {{ $processed := $img.Fill "1600x900" }}
-        <img src="{{ $processed.RelPermalink }}" alt="{{ $.Title }}">
+        {{ $tiny := $img.Fill "400x225 webp q85" }}
+        {{ $small := $img.Fill "800x450 webp q85" }}
+        {{ $medium := $img.Fill "1200x675 webp q85" }}
+        {{ $large := $img.Fill "1600x900 webp q85" }}
+        <img 
+          src="{{ $large.RelPermalink }}" 
+          srcset="{{ $tiny.RelPermalink }} 400w, {{ $small.RelPermalink }} 800w, {{ $medium.RelPermalink }} 1200w, {{ $large.RelPermalink }} 1600w"
+          sizes="(max-width: 800px) 100vw, 800px"
+          width="1600" height="900"
+          alt="{{ $.Title }}">
       {{ else }}
         <img src="{{ . | relURL }}" alt="{{ $.Title }}">
       {{ end }}

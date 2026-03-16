@@ -15,10 +15,10 @@
         
         <a href="{{ $page.RelPermalink }}">
         {{ if $img }}
-          {{ $processed := $img.Fill "400x400" }}
-          <img src="{{ $processed.RelPermalink }}" alt="{{ $page.Title }}">
+          {{ $processed := $img.Fill "400x400 webp q85" }}
+          <img src="{{ $processed.RelPermalink }}" width="400" height="400" alt="{{ $page.Title }}" loading="lazy">
         {{ else }}
-          <img src="{{ . | relURL }}" alt="{{ $page.Title }}">
+          <img src="{{ . | relURL }}" alt="{{ $page.Title }}" loading="lazy">
         {{ end }}
         </a>
       </div>

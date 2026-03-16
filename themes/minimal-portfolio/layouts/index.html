@@ -2,16 +2,16 @@
 <section class="hero">
   <div class="container hero-content">
     <div class="hero-text">
-      <h1 class="hero-title">Hi, I'm Simone</h1>
-      <p class="hero-subtitle">I do work as a web developer and I do like thinkering with projects for my own amusement.</p>
+      <h1 class="hero-title">Hi, I'm Simo</h1>
+      <p class="hero-subtitle">I do work as a web developer and I do like tinkering with projects for my own amusement.</p>
     </div>
     <div class="hero-image">
       {{ $avatar := resources.Get "images/photo_profile.jpg" }}
       {{ if $avatar }}
-        {{ $processed := $avatar.Fill "125x125" }}
-        <img src="{{ $processed.RelPermalink }}" alt="Profile Photo" class="hero-avatar" fetchpriority="high">
+        {{ $processed := $avatar.Fill "150x150 webp q85" }}
+        <img src="{{ $processed.RelPermalink }}" width="150" height="150" alt="Profile Photo" class="hero-avatar" fetchpriority="high">
       {{ else }}
-        <img src="https://via.placeholder.com/125" alt="Profile Photo" class="hero-avatar" fetchpriority="high">
+        <img src="https://via.placeholder.com/150" width="150" height="150" alt="Profile Photo" class="hero-avatar" fetchpriority="high">
       {{ end }}
     </div>
   </div>
@@ -33,10 +33,10 @@
           
           <a href="{{ $page.RelPermalink }}">
           {{ if $img }}
-            {{ $processed := $img.Fill "400x400" }}
-            <img src="{{ $processed.RelPermalink }}" alt="{{ $page.Title }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }}>
+            {{ $processed := $img.Fill "400x400 webp q85" }}
+            <img src="{{ $processed.RelPermalink }}" width="400" height="400" alt="{{ $page.Title }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }} loading="lazy">
           {{ else }}
-            <img src="{{ . | relURL }}" alt="{{ $page.Title }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }}>
+            <img src="{{ . | relURL }}" alt="{{ $page.Title }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }} loading="lazy">
           {{ end }}
           </a>
         </div>
@@ -66,10 +66,10 @@
           
           <a href="{{ $page.RelPermalink }}">
           {{ if $img }}
-            {{ $processed := $img.Fill "400x400" }}
-            <img src="{{ $processed.RelPermalink }}" alt="{{ $page.Title }}">
+            {{ $processed := $img.Fill "400x400 webp q85" }}
+            <img src="{{ $processed.RelPermalink }}" width="400" height="400" alt="{{ $page.Title }}" loading="lazy">
           {{ else }}
-            <img src="{{ . | relURL }}" alt="{{ $page.Title }}">
+            <img src="{{ . | relURL }}" alt="{{ $page.Title }}" loading="lazy">
           {{ end }}
           </a>
         </div>
