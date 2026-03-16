@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://ssimo.dev/'
 languageCode = 'en-us'
 title = 'Simone Simonella | Portfolio'
 theme = 'minimal-portfolio'
