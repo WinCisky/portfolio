@@ -1,6 +1,6 @@
 baseURL = 'https://ssimo.dev/'
 languageCode = 'en-us'
-title = 'Simone Simonella | Portfolio'
+title = 'Simone Simonella'
 theme = 'minimal-portfolio'
 
 [params]
@@ -23,3 +23,21 @@ theme = 'minimal-portfolio'
     name = "Blog"
     url = "/posts/"
     weight = 3
+
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'

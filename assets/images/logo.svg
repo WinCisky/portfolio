@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" shape-rendering="crispEdges" fill="currentColor">
+  <style>
+    @media (prefers-color-scheme: dark) {svg{fill: #fff;}}
+  </style>
+
+  <!-- S -->
+  <path d="M2,1h5v1h-5z M2,2h1v1h-1z M2,3h5v1h-5z M6,4h1v3h-1z M2,6h4v1h-4z M2,5h1v1h-1z"/>
+
+  <!-- i -->
+  <path d="M9,2h1v1h-1z M9,4h1v3h-1z M8,5h1v1h-1z M10,6h1v1h-1z"/>
+
+  <!-- m -->
+  <path d="M2,9h1v3h-1z M3,8h1v1h-1z M4,9h3v1h-3z M5,8h1v1h-1z M6,9h1v3h-1z"/>
+
+  <!-- o -->
+  <path d="M9,8h2v1h-2z M8,9h1v3h-1z M8,11h3v1h-3z M10,10h1v1h-1z"/>
+
+</svg>

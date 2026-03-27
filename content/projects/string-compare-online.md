@@ -4,6 +4,7 @@ date: 2026-03-16T10:00:00Z
 summary: "A minimalist, high-performance tool for comparing text blocks, powered by Svelte and Monaco Editor."
 tags: ["Svelte", "Monaco Editor", "Web Development", "Tooling"]
 image: "images/projects/string-compare-online.png"
+icon: "images/projects/string-compare-online/icon.svg"
 ---
 
 ## Project Overview

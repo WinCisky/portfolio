@@ -1,38 +1,32 @@
 {{ define "main" }}
-<div class="container list-container">
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  <div class="list-items">
-    {{ range .Paginator.Pages }}
-    <article class="list-item">
-      {{ $page := . }}
-      {{ with .Params.image }}
-      <div class="list-item-thumb">
-        {{ $img := $page.Resources.GetMatch . }}
-        {{ if not $img }}
-          {{ $img = resources.Get . }}
-        {{ end }}
-        
-        <a href="{{ $page.RelPermalink }}">
-        {{ if $img }}
-          {{ $processed := $img.Fill "400x400 webp q85" }}
-          <img src="{{ $processed.RelPermalink }}" width="400" height="400" alt="{{ $page.Title }}" loading="lazy">
-        {{ else }}
-          <img src="{{ . | relURL }}" alt="{{ $page.Title }}" loading="lazy">
-        {{ end }}
-        </a>
-      </div>
-      {{ end }}
-      <div class="list-item-content">
-        {{ if .Date }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-        {{ end }}
-        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        <p>{{ .Summary }}</p>
-      </div>
-    </article>
-    {{ end }}
-  </div>
-  {{ partial "pagination.html" . }}
-</div>
+<section>
+    <div id="window" class="window m-4">
+        <div id="window-header" class="border-b flex justify-end cursor-move">
+            <div class="p-1 cursor-pointer" onclick="hideWindow()">
+                <div class="cross"></div>
+            </div>
+        </div>
+        <div class="p-3">
+            <div class="flex flex-wrap gap-4 max-w-62">
+                {{ range .Paginator.Pages }}
+                <article class="bordered w-18 h-18 p-2">
+                    <a href="{{ .RelPermalink }}">
+                        {{ with .Params.icon }}
+                            {{ $img := $.Resources.GetMatch . }}
+                            {{ if not $img }}
+                                {{ $img = resources.Get . }}
+                            {{ end }}
+                            <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }} icon" class="w-full h-full object-cover">
+                        {{ end }}
+                    </a>
+                </article>
+                {{ end }}
+            </div>
+            {{ partial "pagination.html" . }}
+        </div>
+    </div>
+    {{ partial "folders.html" . }}
+</section>
+
+{{ partial "window-script.html" . }}
 {{ end }}

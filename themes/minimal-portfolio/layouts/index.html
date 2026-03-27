@@ -1,88 +1,31 @@
 {{ define "main" }}
-<section class="hero">
-  <div class="container hero-content">
-    <div class="hero-text">
-      <h1 class="hero-title">Hi, I'm Simo</h1>
-      <p class="hero-subtitle">I do work as a web developer and I do like tinkering with projects for my own amusement.</p>
+<section>
+    <div id="window" class="window">
+        <div id="window-header" class="border-b flex justify-end cursor-move">
+            <div class="p-1 cursor-pointer" onclick="hideWindow()">
+                <div class="cross"></div>
+            </div>
+        </div>
+        <div class="p-3">
+            <p>Hi, I'm Simo.</p>
+
+            <p class="max-w-60">
+                I do work as a web developer and I do like tinkering with projects
+                <span class="animate-blink">_</span>
+            </p>
+
+            <div class="flex gap-2 mt-2">
+                <a href="/projects/" class="btn">
+                    Projects
+                </a>
+                <a href="/posts/" class="btn">
+                    Blog
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="hero-image">
-      {{ $avatar := resources.Get "images/photo_profile.jpg" }}
-      {{ if $avatar }}
-        {{ $processed := $avatar.Fill "150x150 webp q85" }}
-        <img src="{{ $processed.RelPermalink }}" width="150" height="150" alt="Profile Photo" class="hero-avatar" fetchpriority="high">
-      {{ else }}
-        <img src="https://via.placeholder.com/150" width="150" height="150" alt="Profile Photo" class="hero-avatar" fetchpriority="high">
-      {{ end }}
-    </div>
-  </div>
+    {{ partial "folders.html" . }}
 </section>
 
-<section class="home-sections container">
-  <div class="home-section">
-    <h2>Projects</h2>
-    <div class="list-items">
-      {{ range $index, $element := first 5 (where .Site.RegularPages "Type" "projects") }}
-      <article class="list-item">
-        {{ $page := . }}
-        {{ with .Params.image }}
-        <div class="list-item-thumb">
-          {{ $img := $page.Resources.GetMatch . }}
-          {{ if not $img }}
-            {{ $img = resources.Get . }}
-          {{ end }}
-          
-          <a href="{{ $page.RelPermalink }}">
-          {{ if $img }}
-            {{ $processed := $img.Fill "400x400 webp q85" }}
-            <img src="{{ $processed.RelPermalink }}" width="400" height="400" alt="{{ $page.Title }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }} loading="lazy">
-          {{ else }}
-            <img src="{{ . | relURL }}" alt="{{ $page.Title }}" {{ if eq $index 0 }}fetchpriority="high"{{ end }} loading="lazy">
-          {{ end }}
-          </a>
-        </div>
-        {{ end }}
-        <div class="list-item-content">
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p>{{ .Summary }}</p>
-        </div>
-      </article>
-      {{ end }}
-      <a href="/projects/" class="view-all">View all projects &rarr;</a>
-    </div>
-  </div>
-
-  <div class="home-section">
-    <h2>Blog</h2>
-    <div class="list-items">
-      {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
-      <article class="list-item">
-        {{ $page := . }}
-        {{ with .Params.image }}
-        <div class="list-item-thumb">
-          {{ $img := $page.Resources.GetMatch . }}
-          {{ if not $img }}
-            {{ $img = resources.Get . }}
-          {{ end }}
-          
-          <a href="{{ $page.RelPermalink }}">
-          {{ if $img }}
-            {{ $processed := $img.Fill "400x400 webp q85" }}
-            <img src="{{ $processed.RelPermalink }}" width="400" height="400" alt="{{ $page.Title }}" loading="lazy">
-          {{ else }}
-            <img src="{{ . | relURL }}" alt="{{ $page.Title }}" loading="lazy">
-          {{ end }}
-          </a>
-        </div>
-        {{ end }}
-        <div class="list-item-content">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p>{{ .Summary }}</p>
-        </div>
-      </article>
-      {{ end }}
-      <a href="/posts/" class="view-all">View all posts &rarr;</a>
-    </div>
-  </div>
-</section>
+{{ partial "window-script.html" . }}
 {{ end }}
